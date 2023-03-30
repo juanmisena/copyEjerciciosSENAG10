@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "deploy": "gh-pages -d ."
+    "deploy": "gh-pages -d .",
+    "publish": "git push -u origin master && npm run deploy"
   },
   "keywords": [],
   "author": "",
