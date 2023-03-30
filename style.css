@@ -1,0 +1,40 @@
+/* .ml {margin-left: 3rem !important;} */
+.alert-heading {
+  padding: 0.5rem 1rem;
+  margin-bottom: 0;
+  background-color: rgba(0, 0, 0, .03);
+  border-bottom: 1px solid rgba(0, 0, 0, .125);
+}
+
+#thead85>tr>th:first-child {
+  text-transform: uppercase;
+}
+
+#tbody85>tr>td:last-child {
+  text-align: center;
+}
+
+#tbody86>tr>td:last-child {
+  text-align: center;
+  vertical-align: middle;
+}
+
+#nh {
+  margin-left: 2rem;
+}
+
+#p-nh {
+  margin-top: -8px;
+}
+.list-group-alpha {
+  counter-reset: section;
+}
+.list-group-alpha li {
+  counter-increment: section;
+}
+.list-group-alpha li::before {
+  margin-right: 10px;
+  /* // Increments only this instance of the section counter */
+  content: counter(section, lower-alpha) ").";
+}
+.go-top {display: none; position: fixed; bottom: 20px; right: 20px;}
