@@ -18,8 +18,32 @@ let formAge = document.getElementById('formAge');
 formAge.addEventListener('submit', (e) => {
   e.preventDefault();
   // prueba-pseint-2
-  let age = document.getElementById('age'), date_b = new Date(age.value), now = new Date();
+  /* let age = document.getElementById('age'), date_b = new Date(age.value), now = new Date();
   val_date_b = Math.abs(date_b.getFullYear() - now.getFullYear());
-  demo.innerText = val_date_b;
+  demo.innerText = val_date_b; */
+  var year = Number(document.getElementById('age').value.substring(0,4));
+  var month = Number(document.getElementById('age').value.substring(5,7));
+  var day = Number(document.getElementById('age').value.substring(8,10));
+  var dateNow = new Date();
+  var yearNow = dateNow.getFullYear();
+  var monthNow = dateNow.getMonth() + 1;
+  var dayNow = dateNow.getDate();
+  var age = 0;
+  if (month == monthNow) {
+    age = yearNow - year;
+    if (day <= dayNow) {
+      demo.innerHTML = age;
+    } else {
+      age -= 1;
+      demo.innerHTML = age;
+    }
+  } else if (month < monthNow) {
+    age = yearNow - year;
+    demo.innerHTML = age;
+  } else {
+    age = yearNow - year;
+    age -= 1;
+    demo.innerHTML = age;
+  }
   e.target.reset();
 });
