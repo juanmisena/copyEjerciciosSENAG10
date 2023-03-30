@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculator Date</title>
+  <!-- Bootswatch 4 Lux Minified CSS -->
+  <link href='https://bootswatch.com/4/lux/bootstrap.min.css' rel='stylesheet'>
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xl-12 col-md-8 col-sm-4 m-0 m-auto">
+        <div class="card">
+          <div class="card-body">
+            <form id="formCalcAge">
+              <div class="form-group has-success">
+                <label for="inputValid" class="input-group-text">Birth Date</label>
+                <input type="date" class="form-control" id="inputValid" required>
+              </div>
+              <div class="d-grid gap-2 mt-3">
+                <button class="btn btn-outline-primary" type="submit">Submit form</button>
+              </div>
+            </form>
+            <div class="mt-3 text-capitalize">
+              <div class="alert alert-success" role="alert">
+                missing <section><p><span id="days"></span> días / <span id="hours"></span> horas / <span id="minutes"></span> minutos / <span id="seconds"></span> segundos</p></section> for your birthday               
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="../Ejercicie 6/prueba-pseint-6-1.js"></script>
+</body>
+</html>
