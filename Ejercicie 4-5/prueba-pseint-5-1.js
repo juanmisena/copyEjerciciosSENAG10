@@ -16,10 +16,18 @@ window.onload = function () {
 }
 let tx_dist = "", tx_tm = "", anyTm = 0, anyConvTm = 0;
 let formSpeed = document.getElementById('formSpeed');
-formSpeed.addEventListener('submit', function (e) {
+formSpeed.addEventListener('submit', (e) => {
   e.preventDefault();
   let distance = document.getElementById('distance'), time = document.getElementById('time'), dist_uni = document.getElementById('dist_uni'), tim_uni = document.getElementById('tim_uni'), demo = document.getElementById('demo'), conv = document.getElementById('conv');
-  let disN = parseFloat(distance.value), timN = parseFloat(time.value), dis_uniN = parseInt(dist_uni.value), tm_uniN = parseInt(tim_uni.value), d = 0;
+  let regex = /\d+\/\d+/g, tN = 0, a = 0, b = 0;
+  if (regex.test(time.value)) {
+    a = String(time.value).slice(0,1);
+    b = String(time.value).slice(2);
+    tN = Number(a) / Number(b);
+  } else {
+    tN = Number(time.value);
+  }
+  let disN = parseFloat(distance.value), timN = tN, dis_uniN = parseInt(dist_uni.value), tm_uniN = parseInt(tim_uni.value), d = 0;
   switch (dis_uniN) {
     case 1:
       tx_dist = "km";
@@ -80,5 +88,5 @@ formSpeed.addEventListener('submit', function (e) {
     conv.textContent = (anyConvTm).toFixed(2) + " m/s";
     // console.log("your value is---> " + d + " km/h");
   }
-  formSpeed.reset();
+  e.target.reset();
 });
