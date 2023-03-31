@@ -14,7 +14,15 @@ let formDistance = document.getElementById('formDistance'), speed = document.get
 let d = 0;
 formDistance.addEventListener('submit', function (e) {
   e.preventDefault();
-  let spN = parseInt(speed.value), tmN = parseInt(time.value), fspN = parseInt(fspeed.value), ftmN = parseInt(ftime.value);
+  let regex = /\d+\/\d+/g, timeN = 0, a = 0, b = 0;
+  if (regex.test(time.value)) {
+    a = Number(String(time.value).slice(0,1));
+    b = Number(String(time.value).slice(2));
+    timeN = a / b;
+  } else {
+    timeN = Number(time.value);
+  }
+  let spN = parseInt(speed.value), tmN = timeN, fspN = parseInt(fspeed.value), ftmN = parseInt(ftime.value);
   let anySp, anyTm, anySpN = 0, anyTmN = 0;
   if (isNaN(spN) || isNaN(tmN)) {
     alert("empty!! field(s)");
