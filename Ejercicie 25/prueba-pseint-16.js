@@ -96,6 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
         note definitive: ${calcNote} ¡Reproved!
         `;
       }
+      window.setTimeout(function () {window.location.reload();}, 5000);
     }
     formSt.reset();
   });
