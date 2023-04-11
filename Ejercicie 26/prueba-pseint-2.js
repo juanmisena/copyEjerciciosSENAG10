@@ -1,3 +1,16 @@
+(function () {
+  function changeWindow(x) {
+    if (x.matches) {
+      console.log(true);
+      document.querySelector('#p-btn').classList.add('col-12', 'btn-group');
+    } else {
+      document.querySelector('#p-btn').classList.remove('col-12', 'btn-group');
+    }
+  }
+  let x = window.matchMedia("(max-width: 768px)");
+  changeWindow(x);
+  x.addEventListener("change", changeWindow);
+})();
 let formKilos = document.getElementById('formKilos');
 formKilos.addEventListener('submit', function (e) {
   e.preventDefault();
@@ -21,7 +34,7 @@ formKilos.addEventListener('submit', function (e) {
       messageDiscont = "se aplico un 20% de descuento";
     }
     text.textContent = messageDiscont;
-    demo.textContent = "$" + (numCantKilos - discont);
+    demo.textContent = "$" + Math.abs(numCantKilos - discont) + " COP (Pesos Colombianos)";
   }
   formKilos.reset();
 });
