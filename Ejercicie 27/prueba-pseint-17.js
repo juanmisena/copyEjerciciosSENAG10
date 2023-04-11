@@ -21,13 +21,13 @@ document.addEventListener('DOMContentLoaded', () => {
   btn_shop.addEventListener('click', (e) => {
     let numShop = document.getElementById('numShop'), valid, discontShop = 0, mess = "";
     valid = regex.test(numShop.value);
-    if (numShop.value == '') {
+    if ((numShop.value == '') || (Number(numShop.value) < 0)) {
       numShop.classList.remove('is-valid');
       alertI.classList.remove('alert-primary');
       alertI.classList.remove('alert-success');
       numShop.classList.add('is-invalid');
       alertI.classList.add('alert-danger');
-      alertI.innerText = 'field empty!, please write a number!...';
+      alertI.innerText = 'field empty!, please write a positive number!...';
     } else {
       if(valid) {
         numShop.classList.remove('is-invalid');
