@@ -1,5 +1,18 @@
 // Ejercicies 44 And 45
 (function () {
+  function changeWindow(x) {
+    if (x.matches) {
+      console.log(true);
+      document.querySelector('#p-btn').classList.add('col-12', 'btn-group');
+    } else {
+      document.querySelector('#p-btn').classList.remove('col-12', 'btn-group');
+    }
+  }
+  let x = window.matchMedia("(max-width: 768px)");
+  changeWindow(x);
+  x.addEventListener("change", changeWindow);
+  // // // //
+  // // // //
   let subjects = document.getElementById('subjects'), costs = document.getElementById('costs'), average = document.getElementById('average');
   subjects.addEventListener('keyup', (e) => {
     if (e.target.value.length > 0) {
@@ -35,6 +48,7 @@ formSch.addEventListener('submit', (e) => {
   } else {
     total = tuition + (tuition * .10);
   }
+  ale.classList.add('pb-5');
   ale.innerText = `
     The total to pay is: $${total}
     The applied discount is: $${discont}

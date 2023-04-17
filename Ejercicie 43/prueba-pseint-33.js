@@ -1,3 +1,16 @@
+(function () {
+  function changeWindow(x) {
+    if (x.matches) {
+      console.log(true);
+      document.querySelector('#p-btn').classList.add('col-12', 'btn-group');
+    } else {
+      document.querySelector('#p-btn').classList.remove('col-12', 'btn-group');
+    }
+  }
+  let x = window.matchMedia("(max-width: 768px)");
+  changeWindow(x);
+  x.addEventListener("change", changeWindow);
+})();
 window.onload = function () {
   document.getElementById('formCap').reset();
 }
@@ -13,6 +26,7 @@ formCap.addEventListener('submit', (e) => {
     interest = (capital * .02);
     mess = "a 2% of interest was applied";
   }
+  ale.classList.add('pb-5');
   ale.innerText = `
     ${mess}
     the interest to payment is: $${interest}

@@ -1,4 +1,19 @@
 (function () {
+  (function () {
+    function changeWindow(x) {
+      if (x.matches) {
+        console.log(true);
+        document.querySelector('#p-btn').classList.add('col-12', 'btn-group');
+      } else {
+        document.querySelector('#p-btn').classList.remove('col-12', 'btn-group');
+      }
+    }
+    let x = window.matchMedia("(max-width: 768px)");
+    changeWindow(x);
+    x.addEventListener("change", changeWindow);
+  })();
+  // // // //
+  // // // //
   let x = document.getElementById('x'), parent_something = document.getElementById('parent-something'), input_something = parent_something.childNodes[3], label_something = parent_something.childNodes[1], i_something = label_something.childNodes.item(0);
   x.addEventListener('change', (e) => {
     if (e.target.options[1].selected) {
@@ -27,11 +42,14 @@ let formSar = document.getElementById('formSar');
 formSar.addEventListener('submit', (e) => {
   e.preventDefault();
   let salary = Number(document.getElementById('salary').value), x = Number(document.getElementById('x').value);
-  if (x == 1) {
-    sar = Number(document.getElementById('sar').value);
-  } else {
-    percent = Number(document.getElementById('percent').value);
-    sar = (salary * percent) / 100;
+  switch (x) {
+    case 1:
+      sar = Number(document.getElementById('sar').value);
+      break;
+    case 2:
+      percent = Number(document.getElementById('percent').value);
+      sar = (salary * percent) / 100;
+      break;
   }
   ale.innerText = `
     The amount of money you deposit each month for SAR is: $${sar}
