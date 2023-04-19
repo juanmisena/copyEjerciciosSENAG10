@@ -1,6 +1,19 @@
-function load() {
+(function () {
+  function changeWindow(x) {
+    if (x.matches) {
+      console.log(true);
+      document.querySelector('#p-btn').classList.add('col-12', 'btn-group');
+    } else {
+      document.querySelector('#p-btn').classList.remove('col-12', 'btn-group');
+    }
+  }
+  let x = window.matchMedia("(max-width: 768px)");
+  changeWindow(x);
+  x.addEventListener("change", changeWindow);
+})();
+/* function load() {
   window.location.href = 'http://localhost:5500/Ejercicie%2051/prueba-pseint-41.html';
-}
+} */
 window.onload = function () {
   document.getElementById('formOlder').reset();
 }
@@ -37,7 +50,8 @@ formOlder.addEventListener('submit', (e) => {
       // console.log(`enter three numbers different`);
     }
     ale.innerText = mess;
-    e.target.querySelector('#nums').setAttribute('disabled', '');
+    arrNums.length = 0;
+    // e.target.querySelector('#nums').setAttribute('disabled', '');
   }
   e.target.reset();
 });
