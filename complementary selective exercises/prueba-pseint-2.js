@@ -1,4 +1,20 @@
 (function () {
+  (function () {
+    function changeWindow(x) {
+      if (x.matches) {
+        console.log(true);
+        document.querySelector('#p-btn').classList.add('col-12', 'btn-group');
+      } else {
+        document.querySelector('#p-btn').classList.remove('col-12', 'btn-group');
+      }
+    }
+    let x = window.matchMedia("(max-width: 768px)");
+    changeWindow(x);
+    x.addEventListener("change", changeWindow);
+  })();
+  /**
+   * Block End
+   */
   let p_price = document.getElementById('p-price'), p_increment = document.getElementById('p-increment'), p_decrement = document.getElementById('p-decrement');
   p_price.children[1].addEventListener('keyup', (e) => {
     if (e.target.value.length > 0) {

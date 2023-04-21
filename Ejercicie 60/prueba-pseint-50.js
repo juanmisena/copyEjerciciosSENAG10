@@ -1,4 +1,20 @@
 (function () {
+  (function () {
+    function changeWindow(x) {
+      if (x.matches) {
+        console.log(true);
+        document.querySelector('#p-btn').classList.add('col-12', 'btn-group');
+      } else {
+        document.querySelector('#p-btn').classList.remove('col-12', 'btn-group');
+      }
+    }
+    let x = window.matchMedia("(max-width: 768px)");
+    changeWindow(x);
+    x.addEventListener("change", changeWindow);
+  })();
+  /**
+   * Block End
+   */
   let level = document.getElementById('level'), p_average = document.getElementById('p-average'), p_subject = document.getElementById('p-subject');
   level.addEventListener('change', (e) => {
     if ((e.target.children[1].selected) || (e.target.children[2].selected)) {
@@ -90,7 +106,7 @@ formIns.addEventListener('submit', ev => {
         units = 55;
       }
     }
-    ale.innerText = `the total to pay for ${units} units is: ${Math.abs(total - discont)}
+    ale.innerText = `the total to pay for ${units} units is: $${Math.abs(total - discont)}
     the discont applied is: $${discont}`;
     ev.target.querySelector('#p-level').children[1].classList.remove("is-valid");
     ev.target.querySelector('#p-average').children[1].setAttribute("disabled", "");

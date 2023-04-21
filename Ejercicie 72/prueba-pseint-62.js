@@ -1,3 +1,29 @@
+(function () {
+  function changeWindow(x) {
+    if (x.matches) {
+      console.log(true);
+      document.querySelector('#p-btn').classList.add('col-12', 'btn-group');
+    } else {
+      document.querySelector('#p-btn').classList.remove('col-12', 'btn-group');
+    }
+  }
+  let x = window.matchMedia("(max-width: 768px)");
+  changeWindow(x);
+  x.addEventListener("change", changeWindow);
+  /**
+   * Block End
+   */
+  let n = document.getElementById('n'), age = document.getElementById('age');
+  n.addEventListener('change', (e) => {
+    if (e.target.options[e.target.options.selectedIndex].selected) {
+      age.removeAttribute('disabled');
+      age.setAttribute('required', '');
+    } else {
+      age.removeAttribute('required');
+      age.setAttribute('disabled', '');
+    }
+  });
+})();
 window.onload = function () {
   document.getElementById('formZoo').reset();
 }
