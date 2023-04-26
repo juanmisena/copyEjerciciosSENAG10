@@ -1,4 +1,16 @@
 (function () {
+  function changeWindow(x) {
+    if (x.matches) {
+      console.log(true);
+      document.querySelector('#p-btn').classList.add('col-12', 'btn-group');
+    } else {
+      document.querySelector('#p-btn').classList.remove('col-12', 'btn-group');
+    }
+  }
+  let x = window.matchMedia("(max-width: 768px)");
+  changeWindow(x);
+  x.addEventListener("change", changeWindow);
+  //===================================================================================================================================//
   const today = new Date();
   const yesterday = new Date(today);
   let fmtMonth = yesterday.getMonth() + 1, fmtDay = yesterday.getDate() - 1;

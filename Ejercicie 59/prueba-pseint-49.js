@@ -1,4 +1,20 @@
 (function () {
+  (function () {
+    function changeWindow(x) {
+      if (x.matches) {
+        console.log(true);
+        document.querySelector('#p-btn').classList.add('col-12', 'btn-group');
+      } else {
+        document.querySelector('#p-btn').classList.remove('col-12', 'btn-group');
+      }
+    }
+    let x = window.matchMedia("(max-width: 768px)");
+    changeWindow(x);
+    x.addEventListener("change", changeWindow);
+  })();
+  /**
+   * Block End
+   */
   let level = document.getElementById('level'), p_age = document.getElementById('p-age'), p_gender = document.getElementById('p-gender'), b_date, op = 0, now = new Date(), p_button = document.getElementById('p-button'), ch_gender;
   level.addEventListener('keyup', (e) => {
     if (e.target.value.length > 0) {
@@ -91,14 +107,25 @@
 window.onload = function () {
   document.getElementById('formLab').reset();
 }
-let ale = document.getElementById('ale'), anemia = "", b_date_year = 0, op = 0;
+let ale = document.getElementById('ale'), anemia = "", b_date_year = 0, b_date_month = 0, b_date_day = 0, op = 0;
 let formLab = document.getElementById('formLab');
 formLab.addEventListener('submit', ev => {
   ev.preventDefault();
   let level = Number(document.getElementById('level').value), age = document.getElementById('age').value;
-  b_date_year = Number(age.slice(0, 4));
-  op = Math.abs(b_date_year - new Date().getFullYear());
-  op = op * 12;
+  b_date_year = Number(age.slice(0, 4)), b_date_month = Number(age.slice(5,7)), b_date_day = Number(age.slice(8,10));
+  op = Math.abs(new Date().getFullYear() - b_date_year);
+  if (b_date_month == (new Date().getMonth() + 1)) {
+    if (b_date_day <= new Date().getDate()) {
+      op = op;
+    } else {
+      op -= 1;
+    }
+  } else if (b_date_month < (new Date().getMonth() + 1)) {
+    op = op;
+  } else {
+    op -= 1;
+  }
+  op = op * 12; // se multiplica por 12, para calcular el mes transcurrido
   anemia = "negative";
   if ((op <= 1) && (level < 13)) {
     anemia = "positive";

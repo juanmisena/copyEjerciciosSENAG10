@@ -1,4 +1,20 @@
 (function () {
+  (function () {
+    function changeWindow(x) {
+      if (x.matches) {
+        console.log(true);
+        document.querySelector('#p-btn').classList.add('col-12', 'btn-group');
+      } else {
+        document.querySelector('#p-btn').classList.remove('col-12', 'btn-group');
+      }
+    }
+    let x = window.matchMedia("(max-width: 768px)");
+    changeWindow(x);
+    x.addEventListener("change", changeWindow);
+  })();
+  /**
+   * Block End
+   */
   let price = document.getElementById('price'), p_brand = document.getElementById('p_brand'), p_percentage = document.getElementById('p_percentage');
   price.addEventListener('keyup', ev => {
     if (ev.target.value.length > 0) {

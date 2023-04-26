@@ -1,4 +1,20 @@
 (function () {
+  (function () {
+    function changeWindow(x) {
+      if (x.matches) {
+        console.log(true);
+        document.querySelector('#p-btn').classList.add('col-12', 'btn-group');
+      } else {
+        document.querySelector('#p-btn').classList.remove('col-12', 'btn-group');
+      }
+    }
+    let x = window.matchMedia("(max-width: 768px)");
+    changeWindow(x);
+    x.addEventListener("change", changeWindow);
+  })();
+  /**
+   * Block End
+   */
   let age = document.getElementById('age'), weight = document.getElementById('weight');
   age.addEventListener('keyup', (e) => {
     if (e.target.value.length > 0) {
@@ -12,13 +28,26 @@
 window.onload = function () {
   document.getElementById('formWeight').reset();
 }
-let ale = document.getElementById('ale'), child = 0, young = 0, adult = 0, old = 0, child_weight = 0, young_weight = 0, adult_weight = 0, old_weight = 0, child_average = 0, young_average = 0, adult_average = 0, old_average = 0, n_per = 0, arrPer = [];
+let ale = document.getElementById('ale'), child = 0, young = 0, adult = 0, old = 0, child_weight = 0, young_weight = 0, adult_weight = 0, old_weight = 0, child_average = 0, young_average = 0, adult_average = 0, old_average = 0, n_per = 0, arrPer = [], toY, toM, toD;
 let formWeight = document.getElementById('formWeight');
 formWeight.addEventListener('submit', ev => {
   if(ev.target.checkValidity()) {
     ev.preventDefault();
   }
-  let age = Number(document.getElementById('age').value), weight = Number(document.getElementById('weight').value);
+  let age = document.getElementById('age').value, weight = Number(document.getElementById('weight').value);
+  toY = Number(String(age).slice(0,4)), toM = Number(String(age).slice(5,7)), toD = Number(String(age).slice(8,10));
+  age = new Date().getFullYear() - toY;
+  if ((new Date().getMonth() + 1) == toM) {
+    if (new Date().getDate() >= toD) {
+      age = age;
+    } else {
+      age -= 1;
+    }
+  } else if ((new Date().getMonth() + 1) > toM) {
+    age = age;
+  } else {
+    age -= 1;
+  }
   const objPerson = {person: ++n_per, age, weight};
   arrPer.push(objPerson);
   if (arrPer.length == 5) {

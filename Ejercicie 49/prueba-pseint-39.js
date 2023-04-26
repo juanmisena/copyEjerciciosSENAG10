@@ -1,3 +1,16 @@
+(function () {
+  function changeWindow(x) {
+    if (x.matches) {
+      console.log(true);
+      document.querySelector('#p-btn').classList.add('col-12', 'btn-group');
+    } else {
+      document.querySelector('#p-btn').classList.remove('col-12', 'btn-group');
+    }
+  }
+  let x = window.matchMedia("(max-width: 768px)");
+  changeWindow(x);
+  x.addEventListener("change", changeWindow);
+})();
 window.onload = function () {
   document.getElementById('formForest').reset();
 }
@@ -19,8 +32,8 @@ formForest.addEventListener('submit', (e) => {
   ale.innerText = `
     trees that can be sown
     ${Math.ceil(Math.floor((pine / 10) * 8))} pines in ${pine}m²
-    ${Math.ceil(oyamel)} oyamel in: ${oyamel} m²
-    ${Math.ceil(Math.floor((cedar / 18) * 10))} cedars in: ${cedar} m²
+    ${Math.ceil(oyamel)} oyamel in: ${oyamel}m²
+    ${Math.ceil(Math.floor((cedar / 18) * 10))} cedars in: ${cedar}m²
   `;
   e.target.reset();
 });

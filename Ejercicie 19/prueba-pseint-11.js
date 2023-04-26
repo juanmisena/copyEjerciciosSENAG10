@@ -1,3 +1,16 @@
+(function () {
+  function changeWindow(x) {
+    if (x.matches) {
+      console.log(true);
+      document.querySelector('#p-btn').classList.add('col-12', 'btn-group');
+    } else {
+      document.querySelector('#p-btn').classList.remove('col-12', 'btn-group');
+    }
+  }
+  let x = window.matchMedia("(max-width: 768px)");
+  changeWindow(x);
+  x.addEventListener("change", changeWindow);
+})();
 document.addEventListener('DOMContentLoaded', () => {
   let alert = document.getElementById('alert');
   let formGrade = document.getElementById('formGrade');
@@ -16,5 +29,10 @@ document.addEventListener('DOMContentLoaded', () => {
       alert.innerText = 'not requires snack!';
     }
     formGrade.reset();
+    window.setTimeout(function () {
+      alert.classList.remove('alert-success', 'alert-danger');
+      alert.classList.add('alert-light');
+      alert.innerText = 'Content';
+    }, 3000);
   });
 });

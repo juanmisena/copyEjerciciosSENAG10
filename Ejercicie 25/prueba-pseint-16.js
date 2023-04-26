@@ -1,12 +1,45 @@
+const uuId = uuid.v4();
+(function () {
+  function changeWindow(x) {
+    if (x.matches) {
+      console.log(true);
+      document.querySelector('#p-btn').classList.add('col-12', 'btn-group');
+    } else {
+      document.querySelector('#p-btn').classList.remove('col-12', 'btn-group');
+    }
+  }
+  let x = window.matchMedia("(max-width: 768px)");
+  changeWindow(x);
+  x.addEventListener("change", changeWindow);
+  /*********************************************************************************************/
+  /*********************************************************************************************/
+  let numCodeAc = document.getElementById('numCodeAc'), numCodeSt = document.getElementById('numCodeSt');
+  numCodeAc.addEventListener('change', (e) => {
+    let isChecked = e.target.checked;
+    if (isChecked) {
+      numCodeSt.removeAttribute('readonly');
+      numCodeSt.value = null;
+    } else {
+      numCodeSt.setAttribute('readonly', '');
+      numCodeSt.value = uuId;
+    }
+  });
+})();
 window.onload = function () {
   document.getElementById('formSt').reset();
+  if (!localStorage.getItem('uuid')) {
+    localStorage.setItem('uuid', String(uuId));
+  } else {
+    let lsVal = String(localStorage.getItem('uuid'));
+    document.getElementById('numCodeSt').value = lsVal;
+  }
 }
 document.addEventListener('DOMContentLoaded', () => {
   let alert = document.getElementById('alert'), arrNote = [], calcNote = 0, addNote;
   let formSt = document.getElementById('formSt');
   formSt.addEventListener('submit', e => {
     e.preventDefault();
-    let numCodeSt = parseFloat(document.getElementById('numCodeSt').value), nameSt = document.getElementById('nameSt').value, nameMatterSt = document.getElementById('nameMatterSt').value, numNoteSt = parseFloat(document.getElementById('numNoteSt').value);
+    let numCodeSt = document.getElementById('numCodeSt').value, nameSt = document.getElementById('nameSt').value, nameMatterSt = document.getElementById('nameMatterSt').value, numNoteSt = parseFloat(document.getElementById('numNoteSt').value);
     nameSt = nameSt.trim();
     nameMatterSt = nameMatterSt.trim();
     let arr = nameSt.split(" ");
@@ -63,6 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
         note definitive: ${calcNote} ¡Reproved!
         `;
       }
+      window.setTimeout(function () {window.location.reload();}, 5000);
     }
     formSt.reset();
   });
