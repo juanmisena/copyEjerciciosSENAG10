@@ -18,19 +18,29 @@ let formVol = document.getElementById('formVol');
 formVol.addEventListener('submit', (e) => {
   e.preventDefault();
   // prueba-pseint-8
+  var rgex = /([^a-z])+/gi;
   let inpLetter = document.getElementById('something'), vocal = "aeiou", demo = document.getElementById('demo');
-  // console.log(vocal.includes(inpLetter.value.charAt(0)));
-  let p_demo = demo.parentElement.parentElement;
-  if (vocal.includes(inpLetter.value.charAt(0))) {
-    p_demo.classList.remove('alert-primary');
-    p_demo.classList.remove('alert-danger');
-    p_demo.classList.add('alert-success');
-    demo.textContent = 'the value added is vocal!!';
-  } else {
-    p_demo.classList.remove('alert-primary');
-    p_demo.classList.remove('alert-success');
+  if (rgex.test(inpLetter.value)) {
+    let p_demo = demo.parentElement.parentElement;
+    inpLetter.classList.add('is-invalid');
+    p_demo.classList.remove('alert-primary','alert-success');
     p_demo.classList.add('alert-danger');
-    demo.textContent = "the value added isn't vocal!!";
+    demo.textContent = "pleace enter only letter!...";
+  } else {
+    inpLetter.classList.remove('is-invalid');
+    // console.log(vocal.includes(inpLetter.value.charAt(0)));
+    let p_demo = demo.parentElement.parentElement;
+    if (vocal.includes(inpLetter.value.charAt(0))) {
+      p_demo.classList.remove('alert-primary');
+      p_demo.classList.remove('alert-danger');
+      p_demo.classList.add('alert-success');
+      demo.textContent = 'the value added is vocal!!';
+    } else {
+      p_demo.classList.remove('alert-primary');
+      p_demo.classList.remove('alert-success');
+      p_demo.classList.add('alert-danger');
+      demo.textContent = "the value added isn't vocal!!";
+    }
+    e.target.reset();
   }
-  e.target.reset();
 });
